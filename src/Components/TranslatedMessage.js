@@ -1,4 +1,4 @@
-function InputForm({ translatedMessage }) {
+function TranslatedMessage({ translatedMessage }) {
   return (
     <div>
       <div className="translated-code">{translatedMessage}</div>
@@ -6,4 +6,4 @@ function InputForm({ translatedMessage }) {
   );
 }
 
-export default InputForm;
+export default TranslatedMessage;
