@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-function InputForm() {
+function InputForm({ translatedMessage, setTranslatedMessage }) {
   // useStates
   const [rawMessage, setRawMessage] = useState("");
-  const [translatedMessage, setTranslatedMessage] = useState("");
+  // const [translatedMessage, setTranslatedMessage] = useState("");
   const [isAlphanumeric, setIsAlphanumeric] = useState(true);
 
   // Morse Code Object
@@ -64,6 +64,11 @@ function InputForm() {
 
   // Functions
   const inputMessage = (event) => {
+    if (event.target.value !== "" && !containsAnyLetter(event.target.value)) {
+      setIsAlphanumeric(false);
+    } else {
+      setIsAlphanumeric(true);
+    }
     setRawMessage(event.target.value);
     translateMessage(event.target.value);
   };
@@ -77,12 +82,6 @@ function InputForm() {
   }
 
   const translateMessage = (message) => {
-    if (message !== "" && !containsAnyLetter(message)) {
-      setIsAlphanumeric(false);
-    } else {
-      setIsAlphanumeric(true);
-    }
-
     let translationString = "";
     let translationArray = [];
 
@@ -131,20 +130,10 @@ function InputForm() {
 
   return (
     <div>
-      <h1>Morse Code Translator</h1>
-      <div>
-        <h2>Input Message</h2>
-        <div className="morse-input">
-          <textarea
-            defaultValue={rawMessage}
-            onChange={inputMessage}
-          ></textarea>
-        </div>
-        <div className="translated-code">{translatedMessage}</div>
+      <h2>Input Message</h2>
+      <div className="morse-input">
+        <textarea defaultValue={rawMessage} onChange={inputMessage}></textarea>
       </div>
-      <button disabled className="btnCopy">
-        Copy
-      </button>
     </div>
   );
 }
