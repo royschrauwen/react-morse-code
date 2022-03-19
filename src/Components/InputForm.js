@@ -78,7 +78,6 @@ function InputForm() {
 
   const translateMessage = (message) => {
     if (message !== "" && !containsAnyLetter(message)) {
-      // console.log("Input is waarschijnlijk morse code!");
       setIsAlphanumeric(false);
     } else {
       setIsAlphanumeric(true);
@@ -88,6 +87,7 @@ function InputForm() {
     let translationArray = [];
 
     if (isAlphanumeric) {
+      // Er zijn meer tekens gevonden dan alleen . en -
       let messageArray = message.split("");
       messageArray.forEach((element) => {
         let charTranslation = morseCode[element.toUpperCase()];
@@ -95,23 +95,29 @@ function InputForm() {
       });
       translationString = translationArray.join("");
     } else {
+      // Er zijn alleen . en - gevonden, dus waarschijnlijk is het bericht in morse code
       if (rawMessage !== "") {
         let translatedLetters = [];
         let messageLetterArray = [];
 
+        // Het bericht opsplitsen in aparte woorden
         let messageWordsArray = message.split("/");
 
-        console.log("message: " + message);
-        console.log("messageWordsArray: " + messageWordsArray);
-
+        // Ieder woord heeft meerdere letters
         messageWordsArray.forEach((element) => {
+          // Letters van elk woord individueel in een array zetten
           messageLetterArray = element.split(" ");
+
+          // Iedere letter vertalen
           messageLetterArray.forEach((elementLetter) => {
             let letter = getKeyByValue(morseCode, elementLetter);
             translatedLetters.push(letter);
           });
+
+          // Na ieder woord een spatie toevoegen
           translatedLetters.push(" ");
         });
+
         translationString = translatedLetters.join("").toLowerCase();
         translationString =
           translationString.charAt(0).toUpperCase() +
