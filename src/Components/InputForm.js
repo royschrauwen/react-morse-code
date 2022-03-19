@@ -4,6 +4,7 @@ function InputForm() {
   // useStates
   const [rawMessage, setRawMessage] = useState("");
   const [translatedMessage, setTranslatedMessage] = useState("");
+  const [isAlphanumeric, setIsAlphanumeric] = useState(true);
 
   // Morse Code Object
   const morseCode = {
@@ -43,7 +44,7 @@ function InputForm() {
     7: "--...",
     8: "---..",
     9: "----.",
-    " ": "  /  ",
+    " ": "/",
     ".": ".-.-.-",
     ",": "--..--",
     "?": "..--..",
@@ -58,6 +59,7 @@ function InputForm() {
     "=": "-...-",
     "@": ".--.-.",
     "&": ".-...",
+    "\n": " / ",
   };
 
   // Functions
@@ -76,15 +78,40 @@ function InputForm() {
 
   const translateMessage = (message) => {
     if (message !== "" && !containsAnyLetter(message)) {
-      console.log("Input is waarschijnlijk morse code!");
+      // console.log("Input is waarschijnlijk morse code!");
+      setIsAlphanumeric(false);
+    } else {
+      setIsAlphanumeric(true);
     }
-    let messageArray = message.split("");
+
+    let translationString = "";
     let translationArray = [];
-    messageArray.forEach((element) => {
-      let charTranslation = morseCode[element.toUpperCase()];
-      translationArray.push(charTranslation + " ");
-    });
-    let translationString = translationArray.join("");
+
+    if (isAlphanumeric) {
+      let messageArray = message.split("");
+      messageArray.forEach((element) => {
+        let charTranslation = morseCode[element.toUpperCase()];
+        translationArray.push(charTranslation + " ");
+      });
+      translationString = translationArray.join("");
+    } else {
+      if (rawMessage !== "") {
+        let translatedLetters = [];
+        let messageLetterArray = [];
+
+        let messageWordsArray = message.split("/");
+
+        messageWordsArray.forEach((element) => {
+          messageLetterArray = element.split(" ");
+          messageLetterArray.forEach((elementLetter) => {
+            let letter = getKeyByValue(morseCode, elementLetter);
+            translatedLetters.push(letter);
+          });
+        });
+        translationString = translatedLetters.join("");
+      }
+    }
+
     setTranslatedMessage(translationString);
   };
 
@@ -92,7 +119,7 @@ function InputForm() {
     <div>
       <h1>Morse Code Generator</h1>
       <div>
-        <h2>Morse Code</h2>
+        <h2>Input Message</h2>
         <div className="morse-input">
           <textarea
             defaultValue={rawMessage}

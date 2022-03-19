@@ -38,7 +38,7 @@
 }
 
 .morse-input textarea {
-  background-color: aqua;
+  background-color: rgb(183, 255, 255);
   width: 80%;
   height: 5rem;
   padding: 0.5rem;
@@ -47,6 +47,10 @@
 
 .translated-code {
   font-size: 3rem;
+  background-color: pink;
+  width: 80%;
+  padding: 0.5rem;
+  margin: auto;
 }
 
 .btnCopy {
