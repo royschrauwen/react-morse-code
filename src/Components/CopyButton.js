@@ -17,7 +17,7 @@ function CopyButton({ translatedMessage }) {
     tempItem.setAttribute("value", content);
     document.body.appendChild(tempItem);
     tempItem.select();
-    document.execCommand("Copy");
+    document.execCommand("Copy"); // This seems depricated, but the API call also does not work on mobile browser, as seen in line 5
     tempItem.parentElement.removeChild(tempItem);
   }
 
