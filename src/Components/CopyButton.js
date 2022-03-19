@@ -2,8 +2,8 @@ import React from "react";
 
 function CopyButton({ translatedMessage }) {
   const handleCopyButtonClick = () => {
-    navigator.clipboard.writeText(translatedMessage);
-    copyToClipboard(translatedMessage);
+    navigator.clipboard.writeText(translatedMessage); // Works op desktop, not on mobile in browser
+    copyToClipboard(translatedMessage); // Found this online
   };
 
   function copyToClipboard(data) {
