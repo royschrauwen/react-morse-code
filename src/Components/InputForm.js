@@ -101,14 +101,21 @@ function InputForm() {
 
         let messageWordsArray = message.split("/");
 
+        console.log("message: " + message);
+        console.log("messageWordsArray: " + messageWordsArray);
+
         messageWordsArray.forEach((element) => {
           messageLetterArray = element.split(" ");
           messageLetterArray.forEach((elementLetter) => {
             let letter = getKeyByValue(morseCode, elementLetter);
             translatedLetters.push(letter);
           });
+          translatedLetters.push(" ");
         });
-        translationString = translatedLetters.join("");
+        translationString = translatedLetters.join("").toLowerCase();
+        translationString =
+          translationString.charAt(0).toUpperCase() +
+          translationString.slice(1);
       }
     }
 
@@ -117,7 +124,7 @@ function InputForm() {
 
   return (
     <div>
-      <h1>Morse Code Generator</h1>
+      <h1>Morse Code Translator</h1>
       <div>
         <h2>Input Message</h2>
         <div className="morse-input">
