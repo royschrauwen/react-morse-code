@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.morse-input textarea {
+  background-color: aqua;
+  width: 80%;
+  height: 5rem;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.translated-code {
+  font-size: 3rem;
+}
