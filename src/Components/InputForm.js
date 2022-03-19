@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
-function InputForm({ translatedMessage, setTranslatedMessage }) {
+function InputForm({
+  translatedMessage,
+  setTranslatedMessage,
+  setMessageIsMorseCode,
+  setMessageAsArray,
+}) {
   // useStates
   const [rawMessage, setRawMessage] = useState("");
   // const [translatedMessage, setTranslatedMessage] = useState("");
@@ -63,11 +68,13 @@ function InputForm({ translatedMessage, setTranslatedMessage }) {
   };
 
   // Functions
-  const inputMessage = (event) => {
+  const handleInputMessage = (event) => {
     if (event.target.value !== "" && !containsAnyLetter(event.target.value)) {
       setIsAlphanumeric(false);
+      setMessageIsMorseCode(false);
     } else {
       setIsAlphanumeric(true);
+      setMessageIsMorseCode(true);
     }
     setRawMessage(event.target.value);
     translateMessage(event.target.value);
@@ -92,7 +99,9 @@ function InputForm({ translatedMessage, setTranslatedMessage }) {
         let charTranslation = morseCode[element.toUpperCase()];
         translationArray.push(charTranslation + " ");
       });
+      // console.log("Inputform--translationArray: " + translationArray);
       translationString = translationArray.join("");
+      setMessageAsArray(translationString);
     } else {
       // Er zijn alleen . en - gevonden, dus waarschijnlijk is het bericht in morse code
       if (rawMessage !== "") {
@@ -133,8 +142,8 @@ function InputForm({ translatedMessage, setTranslatedMessage }) {
       <h2 className="input-header">Input Message</h2>
       <textarea
         className="morse-input"
-        defaultValue={rawMessage}
-        onChange={inputMessage}
+        defaultValue=""
+        onChange={handleInputMessage}
       ></textarea>
     </div>
   );
