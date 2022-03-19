@@ -1,27 +1,49 @@
-.App {
-  text-align: center;
-  background-color: gold;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.morse-input textarea {
+.App {
+  text-align: center;
+  /* background-color: gold; */
+  padding: 0.5rem 1rem;
+}
+
+.header {
+  /* background-color: aquamarine; */
+  padding: 1rem;
+}
+
+.input-header {
+  /* background-color: purple; */
+  margin: 0.5rem auto;
+}
+
+.morse-input {
+  /* background-color: red; */
+}
+
+.morse-input {
   background-color: rgb(183, 255, 255);
-  width: 80%;
+  width: 100%;
   height: 6em;
   padding: 0.5rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .translated-code {
-  font-size: 3rem;
-  background-color: pink;
-  width: 80%;
-  padding: 0.5rem;
-  margin: auto;
+  font-size: 1.5rem;
+  /* background-color: pink; */
+  width: 100%;
+  padding: 0rem;
+  margin: 1rem auto;
 }
 
 .btnCopy {
-  width: 10rem;
+  width: 100%;
   height: 4rem;
   font-size: 2rem;
-  margin: 1rem;
 }

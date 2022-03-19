@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Morse Code Translator</h1>
+      <h1 className="header">Morse Code Translator</h1>
       <InputForm
         translatedMessage={translatedMessage}
         setTranslatedMessage={setTranslatedMessage}

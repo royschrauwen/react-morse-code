@@ -130,10 +130,12 @@ function InputForm({ translatedMessage, setTranslatedMessage }) {
 
   return (
     <div>
-      <h2>Input Message</h2>
-      <div className="morse-input">
-        <textarea defaultValue={rawMessage} onChange={inputMessage}></textarea>
-      </div>
+      <h2 className="input-header">Input Message</h2>
+      <textarea
+        className="morse-input"
+        defaultValue={rawMessage}
+        onChange={inputMessage}
+      ></textarea>
     </div>
   );
 }
