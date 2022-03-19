@@ -1,8 +1,8 @@
-import logo from "./logo.svg";
 import "./App.css";
+import React, { useState } from "react";
 import InputForm from "./Components/InputForm";
 import TranslatedMessage from "./Components/TranslatedMessage";
-import React, { useState } from "react";
+import CopyButton from "./Components/CopyButton";
 
 function App() {
   const [translatedMessage, setTranslatedMessage] = useState("");
@@ -15,6 +15,7 @@ function App() {
         setTranslatedMessage={setTranslatedMessage}
       />
       <TranslatedMessage translatedMessage={translatedMessage} />
+      <CopyButton translatedMessage={translatedMessage} />
     </div>
   );
 }
