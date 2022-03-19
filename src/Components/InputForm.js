@@ -111,6 +111,7 @@ function InputForm() {
           // Iedere letter vertalen
           messageLetterArray.forEach((elementLetter) => {
             let letter = getKeyByValue(morseCode, elementLetter);
+
             translatedLetters.push(letter);
           });
 
