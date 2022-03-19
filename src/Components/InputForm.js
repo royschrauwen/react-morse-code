@@ -44,6 +44,20 @@ function InputForm() {
     8: "---..",
     9: "----.",
     " ": "  /  ",
+    ".": ".-.-.-",
+    ",": "--..--",
+    "?": "..--..",
+    "!": "-.-.--",
+    "-": "-....-",
+    "/": "-..-.",
+    ":": "---...",
+    "'": ".----.",
+    ")": "-.--.-",
+    ";": "-.-.-",
+    "(": "-.--.",
+    "=": "-...-",
+    "@": ".--.-.",
+    "&": ".-...",
   };
 
   // Functions
@@ -52,28 +66,44 @@ function InputForm() {
     translateMessage(event.target.value);
   };
 
+  function containsAnyLetter(str) {
+    return /[a-zA-Z0-9]/.test(str);
+  }
+
+  function getKeyByValue(object, value) {
+    return Object.keys(object).find((key) => object[key] === value);
+  }
+
   const translateMessage = (message) => {
-    //console.log(message);
+    if (message !== "" && !containsAnyLetter(message)) {
+      console.log("Input is waarschijnlijk morse code!");
+    }
     let messageArray = message.split("");
     let translationArray = [];
     messageArray.forEach((element) => {
-      console.log(element);
       let charTranslation = morseCode[element.toUpperCase()];
-      console.log("Morse: " + charTranslation);
       translationArray.push(charTranslation + " ");
     });
     let translationString = translationArray.join("");
-    console.log("Translation: " + translationString);
     setTranslatedMessage(translationString);
   };
 
   return (
     <div>
-      <h1>InputForm</h1>
-      <div className="morse-input">
-        <textarea defaultValue={rawMessage} onChange={inputMessage}></textarea>
+      <h1>Morse Code Generator</h1>
+      <div>
+        <h2>Morse Code</h2>
+        <div className="morse-input">
+          <textarea
+            defaultValue={rawMessage}
+            onChange={inputMessage}
+          ></textarea>
+        </div>
+        <div className="translated-code">{translatedMessage}</div>
       </div>
-      <div className="translated-code">{translatedMessage}</div>
+      <button disabled className="btnCopy">
+        Copy
+      </button>
     </div>
   );
 }
