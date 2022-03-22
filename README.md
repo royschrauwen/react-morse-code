@@ -2,6 +2,10 @@
 
 ![Morse Code Translator Screenshot](https://github.com/royschrauwen/react-morse-code/blob/e77c5210939fdeebc862f0e5df2098e8824c68d8/morse_code_translator_screenshot.jpg)
 
+## Live Demo
+
+https://rs-react-morse-code.netlify.app/
+
 ## What is it?
 
 A web-application that translates typed input into morse code.
